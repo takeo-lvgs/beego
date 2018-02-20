@@ -47,7 +47,9 @@ before_script:
   - sh -c "if [ $(go version) == *1.[5-9]* ]; then go tool vet .; fi"
   - mkdir -p res/var
   - ./ssdb/ssdb-server ./ssdb/ssdb.conf -d
-  - mv takeo- astaxie
+  - mv $HOME/gopath/src/github.com/takeo-lvgs $HOME/gopath/src/github.com/astaxie
+  - export TRAVIS_BUILD_DIR=$HOME/gopath/src/github.com/astaxie/beego
+  - cd $TRAVIS_BUILD_DIR
 after_script:
   -killall -w ssdb-server
   - rm -rf ./res/var/*
